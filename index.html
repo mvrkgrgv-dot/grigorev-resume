@@ -27,7 +27,7 @@
         </nav>
     </header>
 
-    <!-- О себе (профессиональный профиль) -->
+    <!-- О себе  -->
     <section id="about" class="about">
         <div class="about-container">
             <div class="about-text">
@@ -57,7 +57,7 @@
         </div>
     </section>
 
-    <!-- Ключевые компетенции (3 колонки) -->
+    <!-- Ключевые компетенции  -->
     <section id="skills" class="skills">
         <div class="container">
             <h2>Ключевые компетенции</h2>
@@ -218,7 +218,11 @@
             <div class="pdf-resume-wrapper">
                 <button id="saveResumePdfBtn" class="pdf-resume-btn">Сохранить резюме в PDF</button>
             </div>
-
+            
+            <!-- Кнопка вызова формы обратной связи -->
+            <div class="form-open-wrapper">
+            <button id="openFormBtn" class="open-form-btn">Написать сообщение</button>
+            </div>
            
         </div>
     </section>
@@ -258,7 +262,7 @@
 
 
 
-    <!-- Чат-виджет (минималистичный, без эмодзи) -->
+    <!-- Чат-виджет  -->
     <div class="chat-widget">
         <a href="https://vk.me/id218940474?text=Здравствуйте!%20Вопрос%20по%20резюме" 
            class="chat-link" 
@@ -279,17 +283,17 @@
 
     <script src="JS/index.js"></script>
 
-    <!-- Библиотека для PDF -->
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         (function() {
             const pdfBtn = document.getElementById('saveResumePdfBtn');
             if (pdfBtn) {
                 pdfBtn.addEventListener('click', function() {
-                    // Создаём окно для генерации PDF
+                    
                     const win = window.open('', '_blank');
                     
-                    // Пишем чистый HTML для резюме
+                    
                     win.document.write(`
                         <!DOCTYPE html>
                         <html>
@@ -614,7 +618,7 @@
                     
                     win.document.close();
                     
-                    // Ждём загрузки и печатаем/сохраняем PDF
+                    
                     win.onload = function() {
                         win.print();
                     };
@@ -622,6 +626,94 @@
             }
         })();
     </script>
+
+    <!-- Прелоадер -->
+    <div id="preloader">
+        <img src="images/preloader.gif" alt="загрузка страницы">
+    </div>
+
+    <script src="JS/index.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        (function() {
+            const pdfBtn = document.getElementById('saveResumePdfBtn');
+            if (pdfBtn) {
+                pdfBtn.addEventListener('click', function() {
+                    // ... существующий код PDF ...
+                });
+            }
+        })();
+    </script>
     
+<!-- Модальное окно с формой обратной связи -->
+<div id="feedbackModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Обратная связь</h3>
+            <span id="closeModalBtn" class="close-btn">&times;</span>
+        </div>
+        
+        <form action="https://formsubmit.co/mvrkgrgv@mail.ru" method="POST">
+            <!-- Скрытые поля для настройки FormSubmit -->
+            <input type="hidden" name="_subject" value="Новое сообщение с сайта-резюме">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <!-- После отправки пользователь вернется на ваш сайт -->
+            <input type="hidden" name="_next" value="https://mvrkgrgv-dot.github.io/grigorev-resume/">
+            
+            <div class="form-group">
+                <label for="name">ФИО *</label>
+                <input type="text" id="name" name="name" placeholder="Иванов Иван Иванович" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Телефон *</label>
+                <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="ivan@example.ru" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Тема обращения *</label>
+                <select id="subject" name="subject" required>
+                    <option value="">-- Выберите тему --</option>
+                    <option value="vacancy">Вакансия / Стажировка</option>
+                    <option value="project">Сотрудничество по проекту</option>
+                    <option value="consultation">Консультация</option>
+                    <option value="other">Другой вопрос</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Сообщение *</label>
+                <textarea id="message" name="message" rows="4" placeholder="Введите ваше сообщение..." required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="priority">Приоритет</label>
+                <select id="priority" name="priority">
+                    <option value="low">Низкий</option>
+                    <option value="medium" selected>Средний</option>
+                    <option value="high">Высокий</option>
+                </select>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="agree" name="agree" required>
+                <label for="agree">Я согласен на обработку персональных данных *</label>
+            </div>
+            
+            <div class="form-buttons">
+                <button type="submit" class="submit-btn">Отправить</button>
+                <button type="button" id="closeFormBtn" class="cancel-btn">Отмена</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
